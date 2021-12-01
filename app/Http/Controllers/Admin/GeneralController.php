@@ -15,10 +15,41 @@ class GeneralController extends Controller
     public function trandingRules()
     {
         $generals = general::first();
-        // return
+
+        $ar = [];
+        // for crypto API 1
+        $url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
+        $parameters = [
+        'start' => '1',
+        'limit' => '500',
+        'convert' => 'USD'
+        ];
+        $headers = [
+        'Accepts: application/json',
+        'X-CMC_PRO_API_KEY: 04b588e9-4554-4ef0-9509-a1a42de9583d'
+        ];
+        $qs = http_build_query($parameters);
+        $request = "{$url}?{$qs}";
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => $request,
+        CURLOPT_HTTPHEADER => $headers,
+        CURLOPT_RETURNTRANSFER => 1
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        $cryptoList = json_decode($response,true);
 
 
-        return view('admin.general.rules',compact('generals'));
+        foreach($cryptoList['data'] as $data){
+            $index = 'percent_change_'.$generals->trending_incresed_day;
+            if($data['quote']['USD'][$index] >= $generals->trending_incresed_average){
+               array_push($ar,$data);
+            }
+        }
+
+
+        return view('admin.general.rules',compact('generals','ar'));
     }
 
     public function trandingFollow()
