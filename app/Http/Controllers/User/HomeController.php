@@ -24,6 +24,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+
         $menus = menu::with('sub_menu')->get();
         $sliders = slider::all();
         $works = work::all();

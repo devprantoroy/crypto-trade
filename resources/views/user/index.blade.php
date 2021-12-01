@@ -8,9 +8,9 @@
                 <div class="row">
                     <div class="col col-lg-9">
                         <div class="section-title">
-                            <span>{{$general->service_header}}</span>
-                            <h2>{{$general->service_title}}</h2>
-                            <p>{!! clean($general->service_description) !!}</p>
+                            <span>Crypto List</span>
+                            {{-- <h2>{{$general->service_title}}</h2>
+                            <p>{!! clean($general->service_description) !!}</p> --}}
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
 
 
 
-        <section class="cta-s2-section">
+        {{-- <section class="cta-s2-section">
             <div class="container">
                 <div class="row">
                     <div class="col col-sm-9">
@@ -106,7 +106,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
 
   @endsection

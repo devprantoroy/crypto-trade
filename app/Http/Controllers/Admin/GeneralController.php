@@ -17,7 +17,36 @@ class GeneralController extends Controller
         $generals = general::first();
         // return
 
+
         return view('admin.general.rules',compact('generals'));
+    }
+
+    public function trandingFollow()
+    {
+        // for crypto API 1
+        $url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
+        $parameters = [
+        'start' => '1',
+        'limit' => '500',
+        'convert' => 'USD'
+        ];
+        $headers = [
+        'Accepts: application/json',
+        'X-CMC_PRO_API_KEY: 04b588e9-4554-4ef0-9509-a1a42de9583d'
+        ];
+        $qs = http_build_query($parameters);
+        $request = "{$url}?{$qs}";
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => $request,
+        CURLOPT_HTTPHEADER => $headers,
+        CURLOPT_RETURNTRANSFER => 1
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        $cryptoList = json_decode($response,true);
+
+        return view('admin.general.follow',compact('cryptoList'));
     }
 
     public function index()
@@ -374,6 +403,8 @@ class GeneralController extends Controller
 
     public function testNotification(){
         $general = general::first();
+
+        // return "opk";
         // $user['email'] = $general->trending_test_email;
         // $user['message'] = '';
         // $user['subject'] = 'Test EMAIL NOTIFICATION for Crypto which has increased in last '.$general->trending_incresed_day.' days by average of '.$general->trending_incresed_average.'%';
@@ -415,7 +446,8 @@ class GeneralController extends Controller
                         $headers .= "MIME-Version: 1.0\r\n";
                         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
                         $message = $data['name'].' has increased in last '.$general->trending_incresed_day.' days by average of '.$general->trending_incresed_average.'%';
-                        @mail($general->trending_test_email, 'Test EMAIL NOTIFICATION for Crypto which has increased in last '.$general->trending_incresed_day.' days by average of '.$general->trending_incresed_average.'%', $message, $headers);
+                        // mail($general->trending_test_email, 'Test EMAIL NOTIFICATION for Crypto which has increased in last '.$general->trending_incresed_day.' days by average of '.$general->trending_incresed_average.'%', $message, $headers);
+                        mail($general->trending_test_email,"EMAIL NOTIFICATION for Crypto",$message);
                         return redirect()->back()->with('messege', $data['name'].' has increased in last '.$general->trending_incresed_day.' days by average of '.$general->trending_incresed_average.'%');
                     }
              }

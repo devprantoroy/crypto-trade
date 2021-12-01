@@ -78,8 +78,8 @@ Route::group(['namespace' => 'Admin'],function(){
 
          //Route rules
 	 	Route::get('admin/tranding-rules', 'GeneralController@trandingRules')->name('tranding.rules');
+	 	Route::get('admin/tranding-follow', 'GeneralController@trandingFollow')->name('tranding.follow');
 	 	Route::get('admin/test-mail-notificaiton', 'GeneralController@testNotification')->name('test.mail.noti');
-
 
 	 	//Route Send Email
 	 	Route::get('admin/send-email', 'SubscriberController@indexSendemail')->name('send_email.index');

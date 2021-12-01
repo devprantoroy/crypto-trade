@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+
     @include('user/layouts/head')
 
 </head>
 <body>
 
-    @include('user/layouts/header')
+    {{-- @include('user/layouts/header') --}}
 
-    @include('user/layouts/slider') 
+    {{-- @include('user/layouts/slider') --}}
 
     @section('main-content')
 
     @show
 
-    @include('user/layouts/footer')
-        
+    {{-- @include('user/layouts/footer') --}}
+
 </body>
 </html>

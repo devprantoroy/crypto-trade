@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return redirect()->route('tranding.rules');
         $general = general::first();
         $menus = menu::all();
         $sub_menus = sub_menu::all();
@@ -40,9 +41,9 @@ class HomeController extends Controller
 
     public function adminLogout()
     {
-       
+
         Auth::guard('admin')->logout();
-    
+
         return redirect()->route('admin.login');
     }
 }

@@ -1,6 +1,6 @@
    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/')}}">
+      {{-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/')}}">
 
          <div class="sidebar-brand-text mx-3">@lang('Logo')</div>
       </a>
@@ -29,13 +29,13 @@
          <a class="nav-link" href="{{route('blog.index')}}">
          <i class="fab fa-blogger" aria-hidden="true"></i>
          <span>@lang('Blog Management')</span></a>
-      </li>
+      </li> --}}
       {{-- <li class="nav-item">
          <a class="nav-link" href="{{route('category.index')}}">
          <i class="fa fa-th" aria-hidden="true"></i>
          <span>@lang('Category Management')</span></a>
       </li> --}}
-      <li class="nav-item">
+      {{-- <li class="nav-item">
          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#newsletter" aria-expanded="true" aria-controls="newsletter">
          <i class="fa fa-newspaper" aria-hidden="true"></i>
          <span>@lang('Newsletter')</span>
@@ -83,7 +83,20 @@
                <a class="collapse-item" href="{{route('tranding.rules')}}">@lang('Rules')</a>
             </div>
          </div>
-      </li>
+      </li> --}}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('tranding.rules')}}">
+        <i class="fas fa-home"></i>
+        <span>@lang('Rule 1')</span></a>
+     </li>
+
+     <li class="nav-item active">
+        <a class="nav-link" href="{{route('tranding.follow')}}">
+        <i class="fas fa-home"></i>
+        <span>@lang('Follow')</span></a>
+     </li>
+
       <li class="nav-item">
          <a class="nav-link" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
